@@ -292,7 +292,6 @@ func GenericTest(t *testing.T, nclients int, unreliable bool, randomkeys bool) {
 				checkClntAppends(t, i, v, j)
 			}
 		}
-
 	}
 
 	res, info := porcupine.CheckOperationsVerbose(models.KvModel, opLog.Read(), linearizabilityCheckTimeout)
@@ -324,6 +323,11 @@ func TestBasic2(t *testing.T) {
 // Test many clients
 func TestConcurrent2(t *testing.T) {
 	GenericTest(t, 5, false, false)
+}
+
+// Test: unreliable net, many clients
+func TestUnreliable1(t *testing.T) {
+	GenericTest(t, 1, true, false)
 }
 
 // Test: unreliable net, many clients
